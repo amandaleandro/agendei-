@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { verificarDisponibilidade, criarAgendamento, listarAgendamentos, cancelarAgendamento } = require('../controllers/agendamentoController');
 
+// Rota para verificar disponibilidade
 router.get('/:id', (req, res) => {
     const profissionalId = req.params.id;
 
@@ -14,6 +15,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// Rota para criar agendamento
 router.post('/:id/agendar', (req, res) => {
     const profissionalId = req.params.id;
     const { clienteId, data, hora_inicio, servicoSelecionado } = req.body;

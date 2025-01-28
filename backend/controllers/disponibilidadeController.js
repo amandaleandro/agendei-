@@ -18,9 +18,11 @@ exports.bloquearHorario = (profissionalId, data, horaInicio, horaFim, callback) 
 };
 
 exports.getDisponibilidadePorId = (profissionalId, callback) => {
-    let disponibilidade = [
-        { data: '2025-01-21', hora_inicio: '09:00', hora_fim: '12:00' },
-        { data: '2025-01-22', hora_inicio: '14:00', hora_fim: '18:00' }
-    ];
-    callback(disponibilidade);
+    Disponibilidade.find({ profissional_id: profissionalId }, (err, disponibilidade) => {
+        if (err || !disponibilidade) {
+            callback(null);
+        } else {
+            callback(disponibilidade);
+        }
+    });
 };
